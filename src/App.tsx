@@ -7,6 +7,7 @@ import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { useWeather } from '@/hooks/useWeather';
+import axios from 'axios';
 
 function App() {
   const [city, setCity] = useState('');
@@ -65,7 +66,7 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-white p-4 md:p-8">
+    <div className="min-h-screen bg-white p-4 sm:p-6 md:p-8">
       <div className="max-w-4xl mx-auto space-y-6">
         {/* Header */}
         <div className="text-center space-y-2">
@@ -77,7 +78,7 @@ function App() {
         <Card className="border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
           <CardContent className="pt-6">
             <form onSubmit={handleSubmit} className="space-y-4">
-              <div className="flex gap-2">
+              <div className="flex flex-col sm:flex-row gap-2">
                 <Input
                   placeholder="Masukkan nama kota..."
                   value={city}
@@ -177,7 +178,7 @@ function App() {
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-6">
-                  <div className="flex items-center justify-between">
+                  <div className="flex flex-col sm:flex-row items-center justify-between text-center sm:text-left gap-4">
                     <div>
                       <p className="text-6xl font-bold">{Math.round(weather.main.temp)}°C</p>
                       <p className="text-xl text-gray-600 capitalize mt-2">
@@ -220,7 +221,7 @@ function App() {
 
             {/* Forecast */}
             <TabsContent value="forecast">
-              <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
                 {getUniqueDays().map((day, index) => (
                   <Card 
                     key={index}
